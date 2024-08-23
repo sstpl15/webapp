@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        {% load static %}
+        {% comment %} .animated-background {
+            background-color: #FFDEE9;
+            background-image: linear-gradient(30deg, #FFDEE9 0%, #B5FFFC 100%);
+
+
+             background-size: 400% 400%; 
+            
+        }  {% endcomment %}
+        img {
+            {% comment %} opacity: 0.9; {% endcomment %}
+            width:100%; 
+            height: 100vh ;            
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+          }
+          
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.4);
+            color: white;
+            font-weight: bold;
+            border: 3px solid #f1f1f1;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            width:80%;
+            padding: 20px;
+            text-align: center;
+            border-radius:12px;
+        }
+
+        h3 {
+            padding: 18px;
+            margin: auto;
+            width: 217px;
+            font-size: 26px;
+        }
+
+        label {
+            font-size: 18px;
+            font-style: italic;
+        }
+
+        #username {
+            padding: 7px;
+            margin: 6px 0px 0px 18px;
+            border-radius: 15px;
+        }
+
+        #pass1 {
+            padding: 7px;
+            margin: 6px 0px 0px 32px;
+            border-radius: 15px;
+        }
+        
+
+        .checkbox {
+            padding: 17px;
+            margin: 8px 17px 9px 79px;
+            font-size: 21px;
+        }
+
+        .container input {
+            padding: 7px;
+            margin: 4px 0px 0px 0px;
+        }
+
+        .btn {
+            padding: 12px;
+            margin: auto;
+            border-radius: 15px;
+            display: flex;
+            flex-flow: row wrap;
+        }
+
+        .btn button {
+            border: 2px solid black;
+            border-radius: 25px;
+            padding: 7px 17px;
+        }
+        .btn button:hover {
+            border: 2px solid black;
+            border-radius: 25px;
+            padding: 8px 18px;
+            font-size:15px;
+            background-color:white;
+        }
+
+        .btn-group {
+            display: flex;
+            padding: 8px 17px 7px 64px;
+            
+            margin: auto;
+            width: 217px;
+}
+        
+
+        .bg-image {
+            /* The image used */
+            background-image: url("/static/app/5.jpeg");
+
+            /* Add the blur effect */
+            filter: blur(8px);
+            -webkit-filter: blur(8px);
+
+            /* Full height */
+            height: 100%;
+
+            /* Center and scale the image nicely */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        /* Position text in the middle of the page/image */
+        .bg-text {
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/opacity/see-through */
+            color: white;
+            font-weight: bold;
+            border: 3px solid #f1f1f1;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            width: 80%;
+            padding: 20px;
+            text-align: center;
+        }
+        .modal {
+            display: none;
+            position: fixed; 
+            z-index: 1; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%;
+            overflow: auto; 
+            background-color: rgb(0,0,0); 
+            background-color: rgba(0,0,0,0.4); 
+          }
+          
+          /* Modal Content/Box */
+          .modal-content {
+            background-color: #fefefe;
+            margin: 1% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 20%; /* Could be more or less, depending on screen size */
+            height: 10%; 
+            border-radius: 20px;
+          }
+          
+          /* The Close Button */
+          .close {
+            color: #aaa;
+            float: right;
+            font-size: 24px;
+            font-weight: bold;
+          }
+          
+          .close:hover,
+          .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+          }
+          #userexsist {
+            text-align: center;
+            margin: 3px 0px 0px 36px;
+            font-size: 23px;
+            animation: shake 300ms;
+            color: white;
+        }
+        
+        @keyframes shake {
+            25% { transform:translateX(4px)}
+            50% { transform:translateX(-4px)}
+            75% { transform:translateX(4px)}
+        }
+    </style>
+    
+</head>
+<body class="animated-background">
+    {% load static %}
+    
+    <div class="bg"><img src="{% static 'app/5.jpeg' %}"></div>
+    <div class="container">
+        {% for message in messages %}
+            <div class="alert alert-warning" id="userexsist" role="alert">
+                {{message}}
+            </div>         
+            {% endfor %}
+        <h3>Welcome to SStpl</h3>
+        <div>
+            <form action="/signin" method="POST" id="myForm">
+            {% csrf_token %}
+                <div class="user_name">
+                    <label for="username"><strong>User Name</strong></label>
+                    <input type="text" id="username" name="username" placeholder="Create a username" Required  >
+                </div>
+                <br>
+                <div class="password">                    
+                    <label for="pass1"><strong>Password</strong></label>
+                    <input type="password" id="pass1" name="pass1"placeholder="Enter your password"Required >
+                </div>
+                
+                
+                <div class="btn-group">
+                    <div class="btn">
+                        <button type="submit" id="myBtn" onclick="myfn();">Sign In</button>
+                    </div>
+                    
+                                          
+                </div>
+
+
+            </form>
+            
+        </div>
+
+    </div>
+    {% comment %} <div id="myModal" class="modal"> {% endcomment %}
+        {% comment %} <div class="modal-content"> {% endcomment %}
+            {% comment %} <span class="close">&times;</span> {% endcomment %}
+            
+
+        {% comment %} </div> {% endcomment %}
+    {% comment %} </div> {% endcomment %}
+    
+    
+<script>
+    {% comment %} <!-- function myfn(){
+    value='{{ request.session.status }}'
+    //console.log(global.settings.valid_start_date);
+    //value='{{a}}'
+    //alert(value);
+    //console.log(value)
+    if(value = 'no'){
+    //if("alert"){
+    //if(value = null) {
+    //if(value = none) {
+    var modal = document.getElementById("myModal");
+
+    // Get the button that opens the modal
+    //var btn = document.getElementById("myBtn");
+    
+    // Get the <span> elemen t that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+    
+    // When the user clicks on the button, open the modal
+    //btn.onclick = function () {
+      modal.style.display = "block";
+      
+    //}     
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+      modal.style.display = "none";    
+      
+    }    
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+}
+}  {% endcomment %}
+
+
+
+</script> 
+
+
+
+<!-- {% comment %} const myForm = document.getElementById('myForm');
+myForm.addEventListener('submit', handleSubmit);
+var submitTimer;
+
+function handleSubmit(event) {
+console.log('submitTimer set');
+  event.preventDefault();
+  submitTimer = setTimeout(() => {
+    this.submit();
+    console.log('Submitted after 5 seconds');
+  }, 5000)
+}; {% endcomment %}  --> 
+
+
+
+
+    
+</body>
+</html>

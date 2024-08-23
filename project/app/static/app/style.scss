@@ -1,0 +1,308 @@
+// VARIABLES
+// base colors
+$white: #fcfcfc;
+$black: #0b0c10;
+
+// accent colors
+$yellow: lightblue;
+$orange: #fb8500;
+
+// light mode colors
+$dark-blue: lightblue;
+$light-blue: #66fcf1;
+$deep-blue: #1f2833;
+
+// dark mode colors
+$dm-black: #07080a;
+$dm-off-black: #0a0b0d;
+$dm-dark-gray: #16181a;
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: sans-serif;
+}
+
+header {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	padding: 24px 0 8px;
+	background-color: $dark-blue;
+	color: #fefefe;
+    
+    a {
+        color: $white;
+    }
+}
+
+nav {
+	position: relative;
+    // width: 90%;
+    // height: 35px;
+    margin: 10px 0px;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    transition: width .375s linear; 
+    
+    @media( max-width: 540px) {
+        width: 95%;
+    }
+    
+    a {
+        // color: $white;
+        text-decoration: none;
+    }
+
+    .main-nav {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        max-width: 480px;
+        margin: 0 auto;
+        list-style: none;
+        
+        li {
+            height: 35px;
+            width: calc(25% - 16px);
+            text-align: center;
+        }
+        
+        a {
+            display: block;
+            height: 100%;
+            width: 100%;
+            padding-top: 6px;
+            border-bottom: 2px solid transparent;
+            transition: border-color .675s linear;
+            
+            &:hover,
+            &:active,
+            &:focus {
+                border-bottom: 2px solid $deep-blue;
+            }
+        }
+        
+        .active-nav-item {
+            border-bottom: 2px solid $deep-blue;
+        }
+    }
+    
+	.more-menu-parent {
+		position: relative;
+		
+		> a::after {
+			// content: '^';
+			display: inline-block;
+			position: relative;
+			top: 2px;
+			left: 4px;
+			font-size: 1em;
+			transform: rotate(90deg);
+			transition: all .3s;
+		}
+		
+		// rotates the icon to show submenu being open
+		&:hover > a::after,
+        &:active > a::after,
+        &:focus > a::after {
+			top: -2px;
+			transform: rotate(180deg);
+		}
+	}
+
+	.more-menu {
+		background-color: $dm-dark-gray;
+		position: relative;
+		top: 0;
+		right: 75px;
+        width: 175px;
+		max-height: 0;
+		opacity: 0;
+		visibility: hidden;
+		overflow: hidden;
+        box-shadow: 0 2px 5px rgba($dm-dark-gray, .3);
+		// using max-height allows for better transitioning over just height
+		transition:	opacity .3s ease-in-out, 
+								visibility .3s ease-in-out,
+								max-height .2s ease-in-out,
+								margin-bottom .3s ease-in-out;
+		
+        @media (max-width: 480px) {
+            position: relative;
+            right: 30vw;
+        }
+        
+		&.active-more-menu {
+            position: relative;
+			opacity: 1;
+			visibility: visible;
+			max-height: 100vh;
+			margin-bottom: 8px;
+			transition: max-height 1s;
+		}
+		
+		li {
+			position: relative;
+			padding-left: 0;
+			background-color: $white;
+            min-height: 35px;
+            height: auto;
+            width: auto;
+            text-align: left;
+            
+            &:last-of-type {
+                height: 50px;
+            }
+            
+            a {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                padding-left: 1em;
+                color: $black;
+                
+                &:hover,
+                &:active,
+                &:focus {
+                    border-color: $light-blue;
+                }
+            }
+		}
+	}
+}
+
+
+
+// Dark Mode toggle btn styles
+.dark-mode-button {	
+	display: block;
+	position: absolute; 
+	top: 10px;
+	right: 36px;
+    background: transparent;
+    border: none;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    transition: .3s ease-in;
+	letter-spacing: 1px;
+}
+
+.dark-mode-button:before {
+    content: 'THEME';
+    position: relative;
+    color: $black;
+    right: 37px;
+    bottom: 2px;
+    transition: .1s ease-in;
+}
+
+body.dark-mode .dark-mode-button:before {
+    color: black;
+}
+
+.dark-toggle {
+    margin: 0;
+    width: 30px;
+    height: 16px;
+    z-index: 20;
+    border-radius: 10px;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    transition: .3s ease;
+    display: flex;
+    justify-content: center;
+    z-index: 1000;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+body.dark-mode .dark-toggle {
+    background: $dark-blue;
+    border: none;
+}
+
+.dark-toggle span {
+    height: 20px;
+    width: 20px;
+    left: -18px;
+    border-radius: 50%;
+    background: #fff;
+    position: relative;
+    transition: .3s ease;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+}
+
+body.dark-mode .dark-toggle span {
+    left: 20px;
+    transition: .3s ease;
+}
+
+.dark-mode-button .dark-toggle {
+    background: $yellow;
+    width: 40px;
+}
+
+
+// Dark Mode Styles
+
+body.dark-mode {
+    background-color: $dm-off-black;
+    color: $white;
+    
+    header {
+        background-color: $dm-dark-gray;
+        
+        a {
+            color: $white;
+        }
+    }
+    .search {
+        background-color: $dm-dark-gray;
+    }
+    th {
+        background-color: $dm-dark-gray;
+    }
+    td {
+        background-color: $dm-dark-gray;
+    }
+    .site-nav-menu {
+        background-color: $dm-dark-gray;
+    }
+    
+    .details.html {
+        background-color: $dm-dark-gray;
+    }
+    .pagination {
+        color: $black;
+    }
+    tr span {
+        color: $dm-dark-gray;
+    }
+    #elem {
+        background-color: $white;
+    }
+    .more-menu,
+    .more-menu li{
+        background-color: $white;
+    }
+    .search2 {
+        background-color: $dm-dark-gray;
+    }
+    @media only screen and (max-width: 900px) {
+        .site-nav-menu{
+            background-color: $dm-dark-gray;
+
+        }
+        
+    }
+}

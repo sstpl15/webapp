@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Details</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"     rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'app/style1.css' %}">
+	
+	
+	
+	<script type="text/javascript" language="javascript" src="../../static/app/jquery.dataTables.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+  
+    <!-- <link rel="stylesheet" href="{% static 'app/style.css' %}"> -->
+    <style>
+        * {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        outline: 0;
+        list-style: none;
+        box-sizing: border-box;
+    }
+        body{
+            font-size: 18px;
+            {% comment %} font-family: 'Roboto', sans-serif; {% endcomment %}
+            font-family: "Calibri", sans-serif;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            position: sticky;
+            top: 0px;
+            z-index: 2;
+          }
+          
+          nav1 ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+          }
+          
+          nav1 li {
+            margin-left: 20px;
+          }
+          
+          nav1 a {
+            color: #fff;
+            text-decoration: none;
+          }
+          nav1 a:hover {
+            color: #18DCE8;
+            text-decoration: none;
+          }
+          .logo {
+            width: 3rem;
+            position: absolute;
+          }
+          .time p{
+            margin-inline: auto;
+            width: 17rem;
+            scale: 1.5;
+            padding: 2px;
+            margin-top: 13px;
+          }
+          @media only screen and (max-width: 768px) {
+  header {
+    /* flex-direction: column; */
+    /* align-items: flex-start; */
+    align-items: center;
+    padding: 0px 16px 0px 15px;
+  }
+  .logo{
+    display: none;
+  }
+  .burger-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 20px;
+    width: 25px;
+    margin-right: 20px;
+    cursor: pointer;
+  }
+  
+  .bar {
+    height: 3px;
+    background-color: #fff;
+  }
+  
+  .n2   {
+    display: none;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    right: 0;
+    background-color: #333;
+    padding: 20px;
+  }
+  .n3 {
+    display: none;
+    position: absolute;
+    top: 100px;
+    left: 0;
+    right: 0;
+    background-color: #333;
+    padding: 20px;
+  }
+  .n4  {
+    display: none;
+    position: absolute;
+    top: 150px;
+    left: 0;
+    right: 0;
+    background-color: #333;
+    padding: 20px;
+  }
+  
+  nav1 ul {
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+  
+  nav1 li {
+    margin: 10px 0;
+  }
+  
+  nav1 a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+  }
+  
+  .show {
+    display: block !important;
+  }
+}
+
+.dropdown {
+    float: left;
+    overflow: hidden;
+    background: #333;
+    border-radius: 18px;
+    margin: 9px 0px;
+    width:10;
+    display: flex;
+  
+    
+  }
+  
+  .dropdown .dropbtn ,.dropdown .dropbtn2{
+    cursor: pointer;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    padding: 10px 31px 10px 31px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: auto;
+    width: 100%;
+    color: white;
+}
+  
+  
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    margin-top:3rem;
+  }
+  
+  .dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: #ddd;
+  }
+  
+  .show {
+    display: block;
+  }
+  .ds2{
+        display: flex;
+        padding: 11px 5px 11px 5px;
+        
+    }
+    .ds2 button{
+        background-color: #ff8000;
+        padding: 7px;
+        border: none;
+        border-radius: 40px;
+
+    }
+    .s2{
+        padding: 4px 8px;
+        margin: 0px 10px;
+        border-radius: 18px;
+        background: #333;
+    }
+    .flex-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+      }
+      
+      .flex-item {
+        {% comment %} flex-basis: 25%;
+        padding: 10px; {% endcomment %}
+        box-sizing: border-box;
+        text-align: center;
+       
+        margin: 10px;
+      }
+      
+      @media screen and (max-width: 768px) {
+        .flex-item {
+          flex-basis: 50%;
+        }
+      }
+    </style>
+</head>
+<body >
+{% load static %}
+    
+    <header>
+        
+            <img class="logo" src="{% static 'app/sstpllogo.png' %}">
+        
+        
+        <a href="#" class="burger-menu">
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+        </a>
+        <nav1>
+          <ul>
+            <li class="n1" ><a href="/details" style="color: #18DCE8;">Device logs</a></li>
+            <li class="n2"><a href="/gateways">Gateways</a></li>
+            {% comment %} <li class="n3"><a href="#">Services</a></li> {% endcomment %}
+            <li class="n4"><a href="/signout">Sign Out</a></li>
+          </ul>
+        </nav1>
+      </header>
+     <div class="time">
+        <p id="time"></p>
+     </div>
+
+     <div class="flex-container">
+      <div class="dropdown flex-item">
+        <button class="dropbtn" onclick="myFunction()">download data
+        <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content" id="myDropdown">
+            <a href="{% url 'export_excel' %}" class="csv" >Export excel</a>
+            <a href="#"onclick="exportTableToExcel('example')">Export current data</a>
+            <a href="{% url 'export_csv' %}" class="csv" >Export Csv</a>
+        </div>
+    </div>
+      <div class="dropdown flex-item">
+        <button class="dropbtn2" onclick="myFunction2()">Filter by time
+        <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content" id="myDropdown2">
+        <a href="{% url 'search_hour' id=2 %}">2 Hour Ago</a>
+        <a href="{% url 'search_hour' id=6 %}">6 Hour Ago</a>
+        <a href="{% url 'search_hour' id=8 %}">8 Hour Ago</a>
+        </div>
+    </div>
+    
+        
+     
+      
+     
+    
+        <div class="ds2 flex-item">
+            <form action="{% url 'date_search' %}" method="POST" class="s2">
+            {% csrf_token %}
+                <input type="datetime-local" class="form-control" id="" name="date1" placeholder="start date" required="true" style="background: transparent;color: white;">
+                <input type="datetime-local" class="form-control" id="" name="date2" placeholder="end date " required="true" style="background: transparent;color: white;">
+                
+                <button type="submit" class="mag"><i class="fa fa-download"></i></button>           
+            </form>    
+        </div>
+    </div>
+
+    <div style="overflow-x: auto;">
+        <table id="example" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>DeviceEUI</th>
+                    <th>Gateway MAC</th>
+                    <th>Time</th>
+                    <th>Freq</th>
+                    <th>Application Name</th>
+                    <th>SF</th>
+                    <th>fcnt</th>
+                    <th>RSSI</th>
+                    <th>SNR</th>
+                    <th>Payload</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for x in student %}
+                <tr>
+                    <td>{{x.address}}</td>
+                    <td>{{x.mac}}</td>
+                    <td>{{x.time}}</td>
+                    <td>{{x.freq}}</td>
+                    <td class="w6">{{x.modulation}}</td>
+                    <td>{{x.data_rate}}</td>
+                    <td>{{x.code_rate}}</td>
+                    <td>{{x.rssi}}</td>
+                    <td>{{x.lora_snr}}</td>
+                    <td class="w11">{{x.payload}}</td>
+                </tr>
+                {% endfor %} 
+                {% for x in posts %}
+                <tr>
+                    <td>{{x.address}}</td>
+                    <td>{{x.mac}}</td>
+                    <td>{{x.time}}</td>
+                    <td>{{x.freq}}</td>
+                    <td class="w6">{{x.modulation}}</td>
+                    <td>{{x.data_rate}}</td>
+                    <td>{{x.code_rate}}</td>
+                    <td>{{x.rssi}}</td>
+                    <td>{{x.lora_snr}}</td>
+                    <td class="w11">{{x.payload}}</td>
+                </tr>
+                {% endfor %} 
+                {% for x in post1 %}
+                <tr>
+                    <td>{{x.address}}</td>
+                    <td>{{x.mac}}</td>
+                    <td>{{x.time}}</td>
+                    <td>{{x.freq}}</td>
+                    <td class="w6">{{x.modulation}}</td>
+                    <td>{{x.data_rate}}</td>
+                    <td>{{x.code_rate}}</td>
+                    <td>{{x.rssi}}</td>
+                    <td>{{x.lora_snr}}</td>
+                    <td class="w11">{{x.payload}}</td>
+                </tr>
+                {% endfor %} 
+                {% for x in post2 %}
+                <tr>
+                    <td>{{x.address}}</td>
+                    <td>{{x.mac}}</td>
+                    <td>{{x.time}}</td>
+                    <td>{{x.freq}}</td>
+                    <td class="w6">{{x.modulation}}</td>
+                    <td>{{x.data_rate}}</td>
+                    <td>{{x.code_rate}}</td>
+                    <td>{{x.rssi}}</td>
+                    <td>{{x.lora_snr}}</td>
+                    <td class="w11">{{x.payload}}</td>
+                </tr>
+                {% endfor %} 
+                 {% for x in post3 %}
+                <tr>
+                    <td>{{x.address}}</td>
+                    <td>{{x.mac}}</td>
+                    <td>{{x.time}}</td>
+                    <td>{{x.freq}}</td>
+                    <td class="w6">{{x.modulation}}</td>
+                    <td>{{x.data_rate}}</td>
+                    <td>{{x.code_rate}}</td>
+                    <td>{{x.rssi}}</td>
+                    <td>{{x.lora_snr}}</td>
+                    <td class="w11">{{x.payload}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            
+        </table>
+    </div>
+    
+    
+    
+
+    
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+<script>
+    
+    var burger = document.querySelector('.burger-menu');
+    var nav1 = document.querySelectorAll('.n2, .n3, .n4');
+    
+    
+
+    burger.addEventListener('click', function() {
+        console.log(nav1)
+    nav1.forEach(item => item.classList.toggle('show'));
+    });
+</script>
+<script>
+    function refreshTime() {
+    var date = new Date();
+    var dateString = date.toDateString();
+    var timeString = date.toLocaleTimeString();
+    var dateTimeString = dateString + ' ' + timeString;
+
+    document.getElementById("time").innerHTML = dateTimeString;
+}
+    setInterval(refreshTime, 1000);
+</script>
+<script>
+    function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+  }
+  
+  // Close the dropdown if the user clicks outside of it
+  window.onclick = function(e) {
+    if (!e.target.matches('.dropbtn')) {
+    var myDropdown = document.getElementById("myDropdown");
+      if (myDropdown.classList.contains('show')) {
+        myDropdown.classList.remove('show');
+      }
+    }
+  }
+</script>
+<script>
+    function myFunction2() {
+    document.getElementById("myDropdown2").classList.toggle("show");
+  }
+  
+  // Close the dropdown if the user clicks outside of it
+  window.onclick = function(e) {
+    if (!e.target.matches('.dropbtn2')) {
+    var myDropdown = document.getElementById("myDropdown2");
+      if (myDropdown.classList.contains('show')) {
+        myDropdown.classList.remove('show');
+      }
+    }
+  }
+</script>
+<script>
+    $(document).ready(function() {
+    $('#example').DataTable();
+} );
+</script>
+<script>
+    function exportTableToExcel(tableID, filename = ''){
+        var downloadLink;
+        var dataType = 'application/vnd.ms-excel';
+        var tableSelect = document.getElementById(tableID);
+        var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+        
+        // Specify file name
+        filename = filename?filename+'.xls':'excel_data.xls';
+        
+        // Create download link element
+        downloadLink = document.createElement("a");
+        
+        document.body.appendChild(downloadLink);
+        
+        if(navigator.msSaveOrOpenBlob){
+            var blob = new Blob(['\ufeff', tableHTML], {
+                type: dataType
+            });
+            navigator.msSaveOrOpenBlob( blob, filename);
+        }else{
+            // Create a link to the file
+            downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+        
+            // Setting the file name
+            downloadLink.download = filename;
+            
+            //triggering the function
+            downloadLink.click();
+        }
+        }
+        function AutoRefresh( t ) {
+            setTimeout("location.reload(true);", t);
+        }
+</script>
+<script>
+  $(document).ready(function() {
+    function callUrl() {
+      $.ajax({
+        url: "/gatewayapi",
+        type: "GET",
+        success: function(data) {
+          console.log(data);
+          // Do something with the data
+          // For example, update the HTML element with the data
+          var results = data.result;
+          var html = "";
+          for (var i = 0; i < results.length; i++) {
+            if (results[i].state === "ONLINE") {
+            html += "<li class='cards_item'><div class='card'><div class='card_content'><h2 class='card_title'>" + results[i].gatewayId + "</h2><p class='card_text'>" + results[i].lastSeenAt + "</p><p class='card_text'>" + results[i].state + "</p><button class='btn card_btn'>Running</button></div></div></li>";
+          } else {
+            html += "<li class='cards_item'><div class='card'><div class='card_content'><h2 class='card_title'>" + results[i].gatewayId + "</h2><p class='card_text'>" + results[i].lastSeenAt + "</p><p class='card_text'>" + results[i].state + "</p><button class='btn card_btn'>Stoped</button></div></div></li>";
+        }
+          }
+          $(".cards").html(html);
+        },
+      });
+    }
+    
+    callUrl(); // Call the function immediately on page load
+    setInterval(callUrl, 10000); // Call the function every 10 seconds
+  });
+</script>
+
+
+</body>

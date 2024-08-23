@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Details</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"     rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'app/style1.css' %}">
+	
+	
+	
+	<script type="text/javascript" language="javascript" src="../../static/app/jquery.dataTables.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+  
+    <!-- <link rel="stylesheet" href="{% static 'app/style.css' %}"> -->
+    <style>
+        * {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        outline: 0;
+        list-style: none;
+        box-sizing: border-box;
+    }
+        body{
+            font-size: 18px;
+            font-family: "Calibri", sans-serif;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            position: sticky;
+            top: 0px;
+            z-index: 2;
+          }
+          
+          nav1 ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+          }
+          
+          nav1 li {
+            margin-left: 20px;
+          }
+          
+          nav1 a {
+            color: #fff;
+            text-decoration: none;
+          }
+          nav1 a:hover {
+            color: #18DCE8;
+            text-decoration: none;
+          }
+          .logo {
+            width: 3rem;
+            position: absolute;
+          }
+          .time p{
+            margin-inline: auto;
+            width: 15rem;
+            scale: 1.5;
+            padding: 2px;
+            margin-top: 13px;
+          }
+          @media only screen and (max-width: 768px) {
+  header {
+    /* flex-direction: column; */
+    /* align-items: flex-start; */
+    align-items: center;
+    padding: 0px 16px 0px 15px;
+  }
+  .logo{
+    display: none;
+  }
+  .burger-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 20px;
+    width: 25px;
+    margin-right: 20px;
+    cursor: pointer;
+  }
+  
+  .bar {
+    height: 3px;
+    background-color: #fff;
+  }
+  
+  .n2   {
+    display: none;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    right: 0;
+    background-color: #333;
+    padding: 20px;
+  }
+  .n3 {
+    display: none;
+    position: absolute;
+    top: 100px;
+    left: 0;
+    right: 0;
+    background-color: #333;
+    padding: 20px;
+  }
+  .n4  {
+    display: none;
+    position: absolute;
+    top: 150px;
+    left: 0;
+    right: 0;
+    background-color: #333;
+    padding: 20px;
+  }
+  
+  nav1 ul {
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+  
+  nav1 li {
+    margin: 10px 0;
+  }
+  
+  nav1 a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+  }
+  
+  .show {
+    display: block !important;
+  }
+}
+
+  .main{
+    max-width: 106rem;
+      margin: 0 auto;
+    }
+    
+    h1 {
+        font-size: 24px;
+        font-weight: 400;
+        text-align: center;
+    }
+    
+    img {
+      height: auto;
+      max-width: 100%;
+      vertical-align: middle;
+    }
+    
+    .btn {
+      color: #ffffff;
+      padding: 0.8rem;
+      font-size: 14px;
+      text-transform: uppercase;
+      border-radius: 4px;
+      font-weight: 400;
+      display: block;
+      width: 100%;
+      cursor: pointer;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: transparent;
+      border-radius: 20px;
+    }
+    
+    .btn:hover {
+      background-color: rgba(255, 255, 255, 0.12);
+    }
+    
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      margin-left: 2.5rem;
+    }
+    
+    .cards_item {
+      display: flex;
+      padding: 19px 0px 0px 0px;
+    }
+    
+    @media (min-width: 40rem) {
+      .cards_item {
+        width: 50%;
+      }
+    }
+    
+    @media (min-width: 56rem) {
+      .cards_item {
+        width: 16%;
+      }
+    }
+    
+    .card {
+      background-color: white;
+      border-radius: 0.25rem;
+      box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.25);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    
+    .card_content {
+      padding: 1rem;
+      background: linear-gradient(to bottom right, #00b4db, #0083b0);
+  color: white;
+  border-radius: 22px;
+    }
+    
+    .card_title {
+      color: #ffffff;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: capitalize;
+      margin: 0px;
+    }
+    
+    .card_text {
+      color: #ffffff;
+      font-size: 0.875rem;
+      line-height: 1.5;
+      margin-bottom: 1.25rem;    
+      font-weight: 400;
+    }
+    .header-area {
+      background:  rgb(125, 202, 234);
+      border-radius:50px;        
+      width: 100%;
+      padding: 0px 38px;
+      z-index: 999;
+      border-bottom: 2px solid #909090ad;
+      box-shadow: 0px 0px 7px 3px lightblue;
+  }
+  .header-container {
+      display: table;
+      width: 100%;
+      margin: auto;
+  }
+  .site-logo {
+    float: left;
+    padding: 17px 0px;
+}
+.site-logo a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: 600;
+    padding: 15px;
+}
+.site-logo a img{
+    height: 60px;
+    width: 60px;
+    border-radius: 20px 5px 20px 5px;
+}
+.site-logo span {
+    color: #ff4a04;
+}
+.cname{
+  display: inline-block;
+  margin-top: 2.2rem;
+}
+.cname a{
+  color: white;
+  font-size: 25px;
+  font-style: italic;
+}
+.header-area {
+  background:  rgb(125, 202, 234);
+  border-radius:50px;        
+  width: 100%;
+  padding: 0px 38px;
+  z-index: 999;
+  border-bottom: 2px solid #909090ad;
+  box-shadow: 0px 0px 7px 3px lightblue;
+}
+.header-container {
+  display: table;
+  width: 100%;
+  margin: auto;
+}
+.site-logo {
+  float: left;
+  padding: 17px 0px;
+}
+.site-logo a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 24px;
+  font-weight: 600;
+  padding: 15px;
+}
+.site-logo a img{
+  height: 60px;
+  width: 60px;
+  border-radius: 20px 5px 20px 5px;
+}
+.site-logo span {
+  color: #ff4a04;
+}
+.site-nav-menu {
+  float: right;
+  
+}
+.primary-menu{
+  list-style: none;
+}
+.primary-menu li {
+  display: inline-block;
+  margin: 21px 5px;
+}
+.primary-menu a {
+  color: #fff;
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 1px;
+  padding: 15px 10px;
+  transition: .5s;
+}
+.primary-menu a:hover,
+.primary-menu .active {
+  color:#ff4a04;   
+}
+.primary-menu li a:after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background: #ff4a04;
+  bottom: 0px;
+  left: 0;
+  transition: all .5s;
+}
+.primary-menu li a:hover:after {
+  width: 100%;
+}
+.primary-menu li .active:after{
+  width: 100%;
+}
+.mobile-nav{
+  display: none;
+}
+.mobile-nav i{
+  float: right;
+  margin: -28px;
+  padding: 10px;
+  font-size: 24px;
+  color: #fff;
+  outline: none;
+  cursor: pointer;
+}
+section#hero-section {
+  width: 100%;
+  height: 100vh;
+  background: url(../img/ny_nu1it.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+/* Responsive css */
+@media only screen and (max-width: 900px) {
+  .site-nav-menu {
+      float: none;
+      position: absolute;
+      background:rgb(96 184 221);
+      width: 100%;
+      left: 0;
+      top: 85px;
+      padding: 30px 0px 150px 0px;
+      border-top: 1px solid #4a4848;
+      clip-path: circle(0% at 100% 0%);
+      transition: all .8s;
+  }
+  .primary-menu li {
+      display: block;
+      text-align: center;
+      margin: 25px 5px;
+  }
+  .mobile-nav{
+      display: block;
+  }
+  .mobile-menu {
+      clip-path: circle(112% at 100% 0%);
+  }
+  .primary-menu li a:after{
+      display: none;
+  }
+
+  
+  {% comment %} ::-webkit-scrollbar {
+      width: 13px;
+      height: 13px;
+  } {% endcomment %}
+  th .wid{
+      color: black;
+  }  
+  .w11{
+      width:20%;
+      overflow-x: auto;
+
+  }
+}
+
+
+a {
+  
+  text-decoration: none;
+}
+
+nav {
+  {% comment %} border: 1px solid black; {% endcomment %}
+  border-radius: 18px;
+  display: flex;
+  {% comment %} background-color: rgb(125, 202, 234); {% endcomment %}
+  flex-flow: row wrap;
+  background: azure;
+
+
+}
+
+.navlogo {
+  background-color: rgb(125, 202, 234);
+
+
+}
+
+.navlogo img {
+  height: 60px;
+  width: 60px;
+  margin: 2px 9px 1px 14px;
+  border-radius: 20px 5px 20px 5px;
+  background-color: rgb(125, 202, 234);
+
+
+}
+
+.nav {
+  display: flex;
+  background-color: rgb(125, 202, 234);
+  flex-flow: row wrap;
+
+}
+.cname{
+  display: inline-block;
+  margin-top: 2.2rem;
+}
+.cname a{
+  color: white;
+  font-size: 25px;
+  font-style: italic;
+}
+
+
+.home {
+  border: 1px solid black;
+  border-radius: 30px;
+  text-decoration: none;
+  list-style: none;
+  margin: 9px 18px 10px 16px;
+  padding: 13px 28px 13px 28px;
+  background-color: azure;
+
+}
+.home:hover{
+  background-color:rgb(36 118 153);
+  background-color:rgb(36 118 153);
+  color: azure;
+}
+  
+  
+
+
+.nav p a {
+  display: flex;
+  flex-flow: row wrap;
+  font-size: 20px;
+  font-weight: bold;
+  font-style: italic;
+  margin: 4px 0px 0px 20rem;
+  text-decoration: none;
+  color: rgb(36 118 153);
+}
+
+
+
+
+.signout {
+  display: flex;
+  flex-flow: row wrap;
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  background-color: rgb(125, 202, 234);
+}
+
+.signout button {
+
+  border: 1px solid black;
+  border-radius: 30px;
+  text-decoration: none;
+  list-style: none;
+  margin: 9px 18px 10px 10rem;
+  padding: 13px 28px 13px 18px;
+  background-color: azure;
+  flex-flow: row wrap;
+  display: flex;
+
+
+}
+.signout button:hover{
+  background-color:rgb(36 118 153);
+  color: azure;
+  cursor: pointer;
+
+}
+.signout a{
+  flex-flow: row wrap;
+  display: flex;
+}
+.signout a:hover{
+  color: azure;
+}
+
+    </style>
+</head>
+<body >
+{% load static %}
+    
+<header class="header-area">
+  <div class="header-container">
+      <div class="site-logo">
+          <a href="#"> <img src="{% static 'app/1.jpeg' %}"></a>
+          
+      </div>
+      <div class="cname"><a href="https://www.sstpl.in/"> SSTPL</a></div>
+      <div class="mobile-nav">
+          <i class="fas fa-bars"></i>
+      </div>
+      <div class="site-nav-menu">
+          <ul class="primary-menu">
+              <li><a href="/details" >Home</a></li>
+              <li class="n2"><a href="/gateways" class="active">Gateways</a></li>
+              {% comment %} <li><a href="#"><span id="time"> </span></a></li> {% endcomment %}
+              <li><a href="/signout">Sign Out</a></li>
+              
+          </ul>
+      </div>
+  </div>
+</header>
+      <div class="main" id="my-div">
+        <h1>Gateways</h1>
+        <ul class="cards">
+          <li class="cards_item">
+            <div class="card">
+              
+              <div class="card_content">
+                <h2 class="card_title">Card Grid Layout</h2>
+                <p class="card_text">Demo of pixel perfect pure CSS simple responsive card grid layout</p>
+                <button class="btn card_btn">Read More</button>
+              </div>
+            </div>
+          </li>
+          <li class="cards_item">
+  
+          
+        </ul>
+      </div>
+     
+<script>
+    
+    var burger = document.querySelector('.burger-menu');
+    var nav1 = document.querySelectorAll('.n2, .n3, .n4');
+    
+    
+
+    burger.addEventListener('click', function() {
+        console.log(nav1)
+    nav1.forEach(item => item.classList.toggle('show'));
+    });
+</script>
+<script>
+  $(document).ready(function() {
+    function callUrl() {
+        $.ajax({
+            url: "/gatewayapi",
+            type: "GET",
+            success: function(data) {
+                console.log(data);
+                // Do something with the data
+                // For example, update the HTML element with the data
+                var results = data.result;
+                var html = "";
+                for (var i = 0; i < results.length; i++) {
+                    var lastSeenAt = new Date(results[i].lastSeenAt);
+                    // Add 5 hours and 30 minutes to the timestamp
+                    lastSeenAt.setHours(lastSeenAt.getHours() + 5);
+                    lastSeenAt.setMinutes(lastSeenAt.getMinutes() + 30);
+
+                    // Format the timestamp
+                    var formattedLastSeenAt = lastSeenAt.toISOString().replace('T', ' ').replace(/\.\d+Z/, '');
+
+                    var currentTime = new Date();
+                    var timeDifference = currentTime - lastSeenAt;
+                    var state = "Stopped"; // Default state
+
+                    if (timeDifference <= 900000) {
+                        state = "Running";
+                    }
+
+                    html += "<li class='cards_item'><div class='card'><div class='card_content'><h2 class='card_title'>" + results[i].name + "</h2><p class='card_text'>" + formattedLastSeenAt + "</p><p class='card_text'>" + state + "</p><button class='btn card_btn' style='background: " + (state === 'Running' ? 'green' : 'red') + ";'>" + state + "</button></div></div></li>";
+                }
+
+                $(".cards").html(html);
+            },
+        });
+    }
+    callUrl(); // Call the function immediately on page load
+    // setInterval(callUrl, 10000); // Call the function every 10 seconds
+});
+</script>
+
+
+</body>
+</html>

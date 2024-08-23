@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        .animated-background {
+            background: linear-gradient(to right,
+                    rgb(228, 14, 196),
+                    rgb(246, 14, 14),
+                    rgb(228, 157, 14));
+            background-size: 400% 400%;
+        }
+
+        .container {
+            border: none;
+            border-radius: 5px;
+            background-color: white;
+            box-shadow: 1px 4px 8px 0 rgba(0, 0, 0, 1), 0 6px 20px 0 rgba(0, 0, 0, 1);
+            width: 350px;
+            height: 450px;
+            padding: 22px;
+            margin: 64px 58px 0px 11rem;
+        }
+
+        h3 {
+            padding: 10px 48px 10px 48px;
+            margin: auto;
+            width: 220px;
+            font-size: 18px;
+            color: royalblue;
+            font-family: sans-serif;
+            text-align: center;
+        }
+
+        h2 {
+            padding: 3px;
+            /* margin: auto; */
+            width: 220px;
+            font-size: 18px;
+            color: #2a3042;
+            font-family: sans-serif;
+        }
+
+        label {
+            font-size: 18px;
+            font-style: italic;
+        }
+
+        #username {
+            padding: 7px;
+            margin: 6px 0px 0px 18px;
+            border-radius: 15px;
+        }
+        #fname {
+            padding: 7px;
+            margin: 6px 0px 0px 18px;
+            border-radius: 15px;
+        }
+
+        #lname {
+            padding: 7px;
+            margin: 6px 0px 0px 22px;
+            border-radius: 15px;
+        }
+
+        
+
+        #email {
+            padding: 7px;
+            margin: 6px 0px 0px 56px;
+            border-radius: 15px;
+        }
+
+        #pass1 {
+            padding: 7px;
+            margin: 6px 0px 0px 32px;
+            border-radius: 15px;
+        }
+        
+
+        .btn {
+            padding: 0px;
+            margin: 6px 24px 5px 24px;
+            /* border-radius: 14px; */
+            display: flex;
+            flex-flow: row wrap;
+        }
+
+        .btn-group {
+            display: flex;
+            padding: 0px 4px 0px 4px;
+            margin: 7px 50px 8px 58px;
+        }
+        button{
+            border-radius:18px
+        }
+
+        
+
+        .slideshow-container {
+            display: flex;
+            padding: 12px 20px 12px 20px;
+            margin: 60px 59px 49px 150px;
+            background-color: white;
+            box-shadow: 1px 4px 8px 0 rgb(205 45 215), 0 6px 20px 0 rgb(71 19 74);
+        }
+
+        .slideshow-container img {
+            width: 393px;
+            height: 480px;
+            border-radius: 11px;
+        }
+
+        
+        .sign {
+            display: flex;
+        }
+        .userexsist {
+            text-align: center;
+            margin: 3px 0px 0px 36px;
+            font-size: 13px;
+            animation: shake 300ms;
+        }
+        
+        @keyframes shake {
+            25% { transform:translateX(4px)}
+            50% { transform:translateX(-4px)}
+            75% { transform:translateX(4px)}
+        }
+    </style>
+</head>
+
+<body class="animated-background">
+    {% load static %}
+    <div class="sign">
+        
+        <div class="slideshow-container">
+
+            <div class="mySlides fade">
+                <!-- <div class="numbertext">1 / 3</div> -->
+                <img src="{% static 'authen/1.jpeg' %}" style="border-radius: 5px; " >
+                <!-- <div class="text">Caption Text</div> -->
+            </div>
+
+            <div class="mySlides fade">
+                <!-- <div class="numbertext">2 / 3</div> -->
+                <img src="{% static 'authen/3.png' %}">
+                <!-- <div class="text">Caption Two</div> -->
+            </div>
+
+            <div class="mySlides fade">
+                <!-- <div class="numbertext">3 / 3</div> -->
+                <img src="{% static 'authen/2.jpeg' %}">
+                <!-- <div class="text">Caption Three</div> -->
+            </div>
+            <br>
+
+            <div style="text-align:center">
+            <span class="dot"></span> 
+            <span class="dot"></span> 
+            <span class="dot"></span> 
+            </div>
+
+        </div>
+        <div class="container">
+            <h3>Welcome to SStpl</h3>
+            <h2>Create your Account</h2>
+        <div>
+            <form action="{% url 'signup' %}" method="post">
+            {% csrf_token %}
+            <div class="user_name">
+                <label for="username"><strong>User Name</strong></label>
+                <input type="text" id="username" name="username" placeholder="Create a username" Required  >
+            </div> 
+            {% for message in messages %}
+            <div class="userexsist" role="alert">
+                {{message}}
+            </div>     
+            {% endfor %}   
+                <br>
+            <div class="f_name">
+                <label for="fname"><strong>First Name</strong></label>
+                <input type="text" id ="fname" name="fname" placeholder="Enter your First Name" Required >
+            </div>
+                <br>
+            <div class="l_name">
+                <label for="lname"><strong>Last Name</strong></label>
+                <input type="text" id= "lname" name="lname" placeholder="Enter your Last Name"Required >
+            </div>
+                <br>
+            
+            <div class="c_email">
+                <label for="email"><strong>Email</strong></label>
+                <input type="email" id = "email" name="email"placeholder="Enter your email address"Required>
+                </div>
+                <br>
+            <div class="password">                    
+                <label for="pass1"><strong>Password</strong></label>
+                <input type="password" id="pass1" name="pass1"placeholder="Enter your password"Required  >
+            </div>
+                <br>
+            
+
+                <div class="btn-group">
+                    <div class="btn">
+                
+                        <button type="submit">Sign-UP</button>
+                    </div>
+                    <div class="btn">              
+                        <a href="{% url 'signin'%}"><button type="button">Login</button></a>                    
+                    </div>
+                </div>
+
+
+            </form>
+        </div>
+
+    </div>
+</div>
+<script>
+    let slideIndex = 0;
+    showSlides();
+
+    function showSlides() {
+        let i;
+        let slides = document.getElementsByClassName("mySlides");
+        let dots = document.getElementsByClassName("dot");
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) { slideIndex = 1 }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " active";
+        setTimeout(showSlides, 3000); // Change image every 2 seconds
+    }
+</script>
+    
+            
+
+
+
+
+    
+</body>
+</html>

@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Details</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- font awesome cdn -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'app/style.css' %}">
+    <style>
+        *{
+            margin: 0;
+            padding:0;
+            box-sizing: border-box;
+            
+        }
+        body{
+            font-size: 18px;
+            font-family: 'Roboto', sans-serif;
+        }
+        .header-area {
+            background:  rgb(125, 202, 234);
+            border-radius:50px;        
+            width: 100%;
+            padding: 0px 38px;
+            z-index: 999;
+            border-bottom: 2px solid #909090ad;
+            box-shadow: 0px 0px 7px 3px lightblue;
+        }
+        .header-container {
+            display: table;
+            width: 100%;
+            margin: auto;
+        }
+        .site-logo {
+            float: left;
+            padding: 17px 0px;
+        }
+        .site-logo a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 24px;
+            font-weight: 600;
+            padding: 15px;
+        }
+        .site-logo a img{
+            height: 60px;
+            width: 60px;
+            border-radius: 20px 5px 20px 5px;
+        }
+        .site-logo span {
+            color: #ff4a04;
+        }
+        .site-nav-menu {
+            float: right;
+            
+        }
+        .primary-menu{
+            list-style: none;
+        }
+        .primary-menu li {
+            display: inline-block;
+            margin: 21px 5px;
+        }
+        .primary-menu a {
+            color: #fff;
+            position: relative;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: 500;
+            letter-spacing: 1px;
+            padding: 15px 10px;
+            transition: .5s;
+        }
+        .primary-menu a:hover,
+        .primary-menu .active {
+            color:#ff4a04;   
+        }
+        .primary-menu li a:after {
+            content: "";
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            background: #ff4a04;
+            bottom: 0px;
+            left: 0;
+            transition: all .5s;
+        }
+        .primary-menu li a:hover:after {
+            width: 100%;
+        }
+        .primary-menu li .active:after{
+            width: 100%;
+        }
+        .mobile-nav{
+            display: none;
+        }
+        .mobile-nav i{
+            float: right;
+            margin: -28px;
+            padding: 10px;
+            font-size: 24px;
+            color: #fff;
+            outline: none;
+            cursor: pointer;
+        }
+        section#hero-section {
+            width: 100%;
+            height: 100vh;
+            background: url(../img/ny_nu1it.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center center;
+        }
+        /* Responsive css */
+        @media only screen and (max-width: 900px) {
+            .site-nav-menu {
+                float: none;
+                position: absolute;
+                background:rgb(96 184 221);
+                width: 100%;
+                left: 0;
+                top: 85px;
+                padding: 30px 0px 150px 0px;
+                border-top: 1px solid #4a4848;
+                clip-path: circle(0% at 100% 0%);
+                transition: all .8s;
+            }
+            .primary-menu li {
+                display: block;
+                text-align: center;
+                margin: 25px 5px;
+            }
+            .mobile-nav{
+                display: block;
+            }
+            .mobile-menu {
+                clip-path: circle(112% at 100% 0%);
+            }
+            .primary-menu li a:after{
+                display: none;
+            }
+        
+            
+            {% comment %} ::-webkit-scrollbar {
+                width: 13px;
+                height: 13px;
+            } {% endcomment %}
+            th .wid{
+                color: black;
+            }  
+            .w11{
+                width:20%;
+                overflow-x: auto;
+    
+            }
+        }
+        .time{
+            font-size:20px;
+            display: flex;
+            justify-content: center;
+        }
+        .time h1 {
+            font-size:1em;
+            margin-top: 20px;
+        }
+
+        a {
+            
+            text-decoration: none;
+        }
+
+        nav {
+            {% comment %} border: 1px solid black; {% endcomment %}
+            border-radius: 18px;
+            display: flex;
+            {% comment %} background-color: rgb(125, 202, 234); {% endcomment %}
+            flex-flow: row wrap;
+            background: azure;
+
+
+        }
+
+        .navlogo {
+            background-color: rgb(125, 202, 234);
+
+
+        }
+
+        .navlogo img {
+            height: 60px;
+            width: 60px;
+            margin: 2px 9px 1px 14px;
+            border-radius: 20px 5px 20px 5px;
+            background-color: rgb(125, 202, 234);
+
+
+        }
+
+        .nav {
+            display: flex;
+            background-color: rgb(125, 202, 234);
+            flex-flow: row wrap;
+
+        }
+        .cname{
+            display: inline-block;
+            margin-top: 2.2rem;
+        }
+        .cname a{
+            color: white;
+            font-size: 25px;
+            font-style: italic;
+        }
+        
+
+        .home {
+            border: 1px solid black;
+            border-radius: 30px;
+            text-decoration: none;
+            list-style: none;
+            margin: 9px 18px 10px 16px;
+            padding: 13px 28px 13px 28px;
+            background-color: azure;
+
+        }
+        .home:hover{
+            background-color:rgb(36 118 153);
+            background-color:rgb(36 118 153);
+            color: azure;
+        }
+            
+            
+        
+
+        .nav p a {
+            display: flex;
+            flex-flow: row wrap;
+            font-size: 20px;
+            font-weight: bold;
+            font-style: italic;
+            margin: 4px 0px 0px 20rem;
+            text-decoration: none;
+            color: rgb(36 118 153);
+        }
+        
+
+
+
+        .signout {
+            display: flex;
+            flex-flow: row wrap;
+            margin: 0px 0px 0px 0px;
+            padding: 0px 0px 0px 0px;
+            background-color: rgb(125, 202, 234);
+        }
+
+        .signout button {
+
+            border: 1px solid black;
+            border-radius: 30px;
+            text-decoration: none;
+            list-style: none;
+            margin: 9px 18px 10px 10rem;
+            padding: 13px 28px 13px 18px;
+            background-color: azure;
+            flex-flow: row wrap;
+            display: flex;
+
+
+        }
+        .signout button:hover{
+            background-color:rgb(36 118 153);
+            color: azure;
+            cursor: pointer;
+        
+        }
+        .signout a{
+            flex-flow: row wrap;
+            display: flex;
+        }
+        .signout a:hover{
+            color: azure;
+        }
+
+        .search {
+            display: flex;
+            border: 1px solid lightblue;
+            border-radius: 30px;
+            margin: 26px 0px 0px 0px;
+            padding: 9px 2px 9px 2px;
+            flex-flow: row wrap;
+            justify-content: space-evenly;
+            background-color: rgb(125, 202, 234);
+            box-shadow: 0px 0px 7px 3px lightblue;
+            border-bottom: 2px solid #909090ad;
+
+
+        }
+        .search2 {
+            display: flex;
+            border: 1px solid lightblue;
+            border-radius: 30px;
+            margin: 26px 0px 0px 0px;
+            padding: 9px 2px 9px 2px;
+            flex-flow: row wrap;
+            justify-content: space-evenly;
+            background-color: rgb(125, 202, 234);
+            box-shadow: 0px 0px 7px 3px lightblue;
+            border-bottom: 2px solid #909090ad;
+
+
+        }
+
+        .search input {
+            border: 1px solid black;
+            border-radius: 30px;
+            background-color: azure;
+           
+            padding: 11px 5px 11px 5px;
+
+        }
+
+        
+        .search p {
+
+            display:flex;
+        }
+
+        .search a {
+            text-decoration: none;
+        }
+        .form-group select {
+            background: azure;
+            display: flex;
+            align-items: center;
+            border-radius: 60px;
+            margin: 9px 18px 10px 0px;
+            padding: 13px 28px 13px 28px;
+        }
+
+        table {
+            border-collapse: collapse;
+            border: 1px solid black;
+            background-color: white;
+            width: 100%;
+            {% comment %} box-shadow: 0px 0px 7px 3px lightblue; {% endcomment %}
+            {% comment %} border-bottom: 2px solid #909090ad; {% endcomment %}
+            margin-top: 20px;
+            {% comment %} table-layout: fixed {% endcomment %}
+            box-shadow: 0px 0px 7px 3px lightblue;
+
+        }
+        thead{
+            box-shadow: 0px 0px 7px 3px lightblue;
+        }
+
+
+
+        th {
+            border: 1px solid black;
+            height: 70px;
+            background-color: rgb(125, 202, 234);
+
+
+
+        }
+        th{
+            width:3%;
+        }
+        .w2{
+            width:12%;
+        }
+        .w3{
+            width:12%;
+        }
+        .w4{
+            width:12.5%;
+        }
+        .w5{
+            width:7%;
+        }
+        .w6{
+            width:10%;
+            overflow: auto;
+        }
+        .w7{
+            width:3%;
+        }
+        .w8{
+            width:5%;
+        }
+        .w9{
+            width:5%;
+        }
+        .w10{
+            width:5%;
+        }
+        
+        {% comment %} ::-webkit-scrollbar {
+            width: 13px;
+            height: 13px;
+        } {% endcomment %}
+        th .wid{
+            color: black;
+        }  
+        .w11{
+            width:20%;
+            overflow-x: auto;
+
+        }
+
+        th:hover {
+            background-color: rgb(102, 187, 224);
+        }
+
+        td {
+            border: 1px solid black;
+            height: 40px;
+            padding-left: 5px;
+            max-width: 0;
+            overflow: hidden;
+            {% comment %} text-overflow: ellipsis; {% endcomment %}
+            white-space: nowrap;
+        }
+        
+
+        tr:hover {
+            background-color: rgb(164, 211, 231);
+        }
+
+
+
+
+
+
+        .search-input {
+            padding: 0.6em 1em;
+            border-top: 1px solid rgb(125, 202, 234);
+            border-bottom: 1px solid rgb(125, 202, 234);
+            outline: none;
+            background-color: rgb(125, 202, 234);
+            margin: 0px 0px 0px -2px;
+
+        }
+        .pagination li:hover{
+            cursor: pointer;
+            background-color: rgb(125, 202, 234);
+        }
+        .pagination-container {
+        
+        margin: 1px 12px 2px 1px;
+        padding: 4px 9px 1px 1rem;
+}
+        .pagination {
+            display: flex;
+            text-decoration: none;
+            list-style: none;
+            
+            margin: 2px 97px 1px 6rem;
+            padding: 11px 66px 11px 66px;
+            justify-content: center;
+        }
+        .pagination li{
+            border: 1px solid black;
+            border-radius:30px;
+            margin: 1px 12px 2px 1px;
+            padding: 4px 9px 1px 9px;
+            background-color: azure;
+
+
+        }
+                  
+        
+        #elem{
+            width: 50px;
+            height: 50px;
+            background-color:transparent;
+            align-items:center;
+            justify-content:center;
+            position:fixed;
+            display: flex;
+            border-radius: 50%;
+            right: 20px;
+            bottom: 20px;
+            font-size: 30px;
+            cursor: pointer;
+
+
+            
+        }
+        #elem:hover{
+            background-color: rgb(125, 202, 234);
+            color: rgb(255, 255, 255);
+            border-color: rgb(36 118 153);
+
+        }
+        .flex{
+            display: flex;
+            font-size:20px;
+            margin-top:14px;
+            
+        }
+        .ds1{
+            display:flex;
+            padding: 11px 5px 11px 5px;
+        }
+        .ds2{
+            display: flex;
+            padding: 11px 5px 11px 5px;
+            background-color: azure;
+            border-radius: 22px;
+        }
+        .ds2 button{
+            background-color: rgb(125, 202, 234);
+            padding: 7px;
+            border: none;
+            border-radius: 40px;
+
+        }
+        .s2{
+            padding: 4px 8px;
+            margin: 0px 10px;
+            border-radius: 18px;
+            background: azure;
+        }
+        .s{
+            width:100%;
+            
+            width: 100%;
+            background: azure;
+            display: flex;
+            align-items: center;
+            border-radius: 60px;
+            padding: 0px 10px 0px 10px;
+            margin: 0px 10px 0px 6px;
+
+        }
+        .s1{
+            
+            background: azure;
+            display: flex;
+            align-items: center;
+            border-radius: 60px;
+            padding: 0px 10px 0px 10px;
+            margin: 10px 10px 10px 10px;
+        }
+
+        .s input{
+            background : transparent ;
+            border : 0 ;
+            outline : none ;
+            font-size : 20 ;
+        }
+        .s1 input{
+            background : transparent ;
+            border : 0 ;
+            outline : none ;
+            font-size : 20 ;
+        }
+        .s button{
+            border: 0;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            background: rgb(125, 202, 234);
+            cursor: pointer;
+        }
+        .s2 input{
+           
+            padding: 2px;
+            margin: 6px 0px;
+        }
+        tr span{
+            color:rgb(125, 202, 234);
+        }
+        @media (max-width: 540px){
+            .search input{
+                width:100%
+            }
+            .ds1{
+                width:100%
+            }
+            .form-control{
+                width:100%
+            }
+            .form-group{
+                width:100%
+            }
+            .no_of_rows{
+                width:94%
+            }
+            .dropdown {
+               
+                width:100%;
+                
+              }
+              
+}
+        @media (max-width: 550px){
+            .ds2 button {
+                margin:auto;
+                width:100%;
+            }    
+              
+}
+.dropdown {
+    float: left;
+    overflow: hidden;
+    background: azure;
+    border-radius: 18px;
+    margin: 9px 0px;
+    width:10;
+    display: flex;
+  
+    
+  }
+  
+  .dropdown .dropbtn {
+    cursor: pointer;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    padding: 10px 31px 10px 31px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: auto;
+    width: 100%;
+}
+  
+  
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    margin-top:3rem;
+  }
+  
+  .dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: #ddd;
+  }
+  
+  .show {
+    display: block;
+  }
+    </style>
+</head>
+<body >
+{% load static %}
+    <header class="header-area">
+        <div class="header-container">
+            <div class="site-logo">
+                <a href="#"> <img src="{% static 'app/1.jpeg' %}"></a>
+                
+            </div>
+            <div class="cname"><a href="https://www.sstpl.in/"> SSTPL</a></div>
+            <div class="mobile-nav">
+                <i class="fas fa-bars"></i>
+            </div>
+            <div class="site-nav-menu">
+                <ul class="primary-menu">
+                    <li><a href="/details" class="active">Home</a></li>
+                    <li class="n2"><a href="/gateways">Gateways</a></li>
+                    {% comment %} <li><a href="#"><span id="time"> </span></a></li> {% endcomment %}
+                    <li><a href="/signout">Sign Out</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class="time">
+        <h1> <span id="time"> </span></h1>
+    </div>
+    <div>
+        <div class="search">
+        
+            <div class="ds1">
+                <form action="{% url 'search_eui' %}" method="POST" class="s">
+                {% csrf_token %}
+                    <input type="text" class="form-control" id="searcheui" name="eui" placeholder="Search By DeviceEUI">
+                    <button type="submit" class="mag">🔍</button>           
+                </form>    
+            </div>
+            <div class="ds1">
+                <form action="{% url 'search_mac' %}" method="POST" class="s">
+                {% csrf_token %}
+                    <input type="text" class="form-control" id="searchmac" name="mac" placeholder="Search By Gateway ">
+                    <button type="submit" class="mag">🔍</button>           
+                </form>    
+            </div>
+            {% comment %} <div class="ds1">
+                <a href="{% url 'export_csv' %}" class="csv" >Export Csv</a>
+                
+
+            </div> {% endcomment %}
+            
+            
+            
+            <div class="no_of_rows">
+                
+                <div class="form-group">
+                    <!--		Show Numbers Of Rows 		-->
+                    <select class="form-control" name="state" id="maxRows">
+                        
+                        <option value="5000">Show ALL Rows</option>
+                        
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                        <option value="50">50</option>
+                        <option value="70">70</option>
+                        <option value="100">100</option>
+                    </select>
+
+                        
+                </div>
+                
+            </div>
+            
+            <div class="ds1">
+                <input type="text" class="form-control" id="searchBox" placeholder="Search ">
+            </div> 
+            <nav>
+                <ul class="main-nav">
+                    <li class="more-menu-parent"><a href="#">More</a>
+                        <ul class="more-menu">
+                            
+                
+                            <li><a href="{% url 'export_excel' %}" class="csv" >Export excel</a></li>
+                            <li> <a href="#"onclick="exportTableToExcel('myTable')">Export current data</a></li>
+                            <li>
+                            <!-- 		DarkModeJS Toggle Button		 -->
+                                <button class="dark-mode-button" aria-label="dark mode toggle">
+                                    <span aria-hidden="true" class="dark-toggle">
+                                            <span class="DTspan"></span>
+                                    </span>
+                                </button>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <div class="dropdown">
+                <button class="dropbtn" onclick="myFunction()">Dropdown
+                <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content" id="myDropdown">
+                <a href="{% url 'search_hour' id=2 %}">2 Hour Ago</a>
+                <a href="{% url 'search_hour' id=6 %}">6 Hour Ago</a>
+                <a href="{% url 'search_hour' id=8 %}">8 Hour Ago</a>
+                </div>
+            </div>
+        </div>
+        <div class="search2"> 
+            <div class="ds2">
+                <form action="{% url 'date_search' %}" method="POST" class="s2">
+                {% csrf_token %}
+                    <input type="datetime-local" class="form-control" id="" name="date1" placeholder="start date" required="true">
+                    <input type="datetime-local" class="form-control" id="" name="date2" placeholder="end date " required="true">
+                    
+                    <button type="submit" class="mag"><i class="fa fa-download"></i></button>           
+                </form>    
+            </div>
+        </div> 
+    </div>
+    <div style="overflow-x: auto;" class="table">
+        <div class="time">
+            <h1> <span > Data</span></h1>
+        </div>
+        
+        <table id="myTable" >
+            <thead>
+                <tr class="header">
+                    
+                    <th class="w2"><span >........</span>DeviceEUI<span>...........</span></th>
+                    <th class="w3"><span >.....</span>Gateway MAC <span >...........</span>Address<span >.........</span></th>
+                    <th class="w4"> <span >................</span>Time<span>..................</span></th>
+                    <th class="w5"><span >.......</span>Freq<span >........</span></th>
+                    <th class="w6">Application Name</th>
+                    <th class="w7"><span >...</span>SF<span >...</span></th>
+                    <th class="w8"><span >..</span>fcnt<span >.</span></th>
+                    <th class="w9">RSSI</th>
+                    <th class="w10"><span >..</span>SNR<span >..</span></th>
+                    <th class="w11">Payload</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for x in student %}
+                <tr>
+                    <td>{{x.address}}</td>
+                    <td>{{x.mac}}</td>
+                    <td>{{x.time}}</td>
+                    <td>{{x.freq}}</td>
+                    <td class="w6">{{x.modulation}}</td>
+                    <td>{{x.data_rate}}</td>
+                    <td>{{x.code_rate}}</td>
+                    <td>{{x.rssi}}</td>
+                    <td>{{x.lora_snr}}</td>
+                    <td class="w11">{{x.payload}}</td>
+                </tr>
+                {% endfor %} 
+                {% for x in posts %}
+                <tr>
+                    <td>{{x.address}}</td>
+                    <td>{{x.mac}}</td>
+                    <td>{{x.time}}</td>
+                    <td>{{x.freq}}</td>
+                    <td class="w6">{{x.modulation}}</td>
+                    <td>{{x.data_rate}}</td>
+                    <td>{{x.code_rate}}</td>
+                    <td>{{x.rssi}}</td>
+                    <td>{{x.lora_snr}}</td>
+                    <td class="w11">{{x.payload}}</td>
+                </tr>
+                {% endfor %} 
+                {% for x in post1 %}
+                <tr>
+                    <td>{{x.address}}</td>
+                    <td>{{x.mac}}</td>
+                    <td>{{x.time}}</td>
+                    <td>{{x.freq}}</td>
+                    <td class="w6">{{x.modulation}}</td>
+                    <td>{{x.data_rate}}</td>
+                    <td>{{x.code_rate}}</td>
+                    <td>{{x.rssi}}</td>
+                    <td>{{x.lora_snr}}</td>
+                    <td class="w11">{{x.payload}}</td>
+                </tr>
+                {% endfor %} 
+                {% for x in post2 %}
+                <tr>
+                    <td>{{x.address}}</td>
+                    <td>{{x.mac}}</td>
+                    <td>{{x.time}}</td>
+                    <td>{{x.freq}}</td>
+                    <td class="w6">{{x.modulation}}</td>
+                    <td>{{x.data_rate}}</td>
+                    <td>{{x.code_rate}}</td>
+                    <td>{{x.rssi}}</td>
+                    <td>{{x.lora_snr}}</td>
+                    <td class="w11">{{x.payload}}</td>
+                </tr>
+                {% endfor %} 
+                 {% for x in post3 %}
+                <tr>
+                    <td>{{x.address}}</td>
+                    <td>{{x.mac}}</td>
+                    <td>{{x.time}}</td>
+                    <td>{{x.freq}}</td>
+                    <td class="w6">{{x.modulation}}</td>
+                    <td>{{x.data_rate}}</td>
+                    <td>{{x.code_rate}}</td>
+                    <td>{{x.rssi}}</td>
+                    <td>{{x.lora_snr}}</td>
+                    <td class="w11">{{x.payload}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+              
+        </table>
+        
+        <div class='pagination-container'>
+            
+                <ul class="pagination">
+
+                    <li data-page="prev">
+                        <span>
+                            Previous <span class="sr-only">
+                        </span></span>
+                    </li>
+                    <!--	Here the JS Function Will Add the Rows -->
+                    <li data-page="next" id="prev">
+                        <span> Next <span class="sr-only"></span></span>
+                    </li>
+                </ul>
+            
+        </div>
+        <div id='x'>
+            <button id='elem'>&#8593</button>
+        </div>
+
+
+    </div>
+        
+   
+
+    
+    
+
+    
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    // START DarkModeJS
+const body = document.querySelector('body');
+
+// Dark Mode Action
+let darkMode = localStorage.getItem("darkMode");
+const darkModeToggle = document.querySelector('.dark-mode-button');
+
+// Enable Dark Mode
+const enableDarkMode = () => {
+    body.classList.add("dark-mode");
+    localStorage.setItem("darkMode", "enabled")
+}
+
+// Disable Dark Mode
+const disableDarkMode = () => {
+    body.classList.remove("dark-mode");
+    localStorage.setItem("darkMode", null)
+}
+
+if (darkMode == "enabled") {
+    enableDarkMode();
+}
+
+// Desktop Button
+darkModeToggle.addEventListener('click', () => {
+    darkMode = localStorage.getItem("darkMode");
+    if (darkMode !== "enabled") {
+        enableDarkMode();
+    } else {
+        disableDarkMode();
+    }
+})
+// END DarkModeJS
+
+
+
+// START MORE MENU
+const moreMenu = document.querySelector('.more-menu-parent');
+moreMenu.addEventListener("click", toggleMoreMenu);
+
+function toggleMoreMenu() {
+    console.log(this)
+	this.querySelector('.more-menu').classList.toggle('active-more-menu');
+}
+
+
+
+// Get active menu item
+function assignActiveNavItem(){
+    let active = document.querySelector('.main-nav a[href^="/' + location.pathname.split("/")[1] + '"]');
+    active.classList.add('active-nav-item');
+}
+
+assignActiveNavItem();
+</script>
+<script >$(document).ready(function(){
+    $(".mobile-nav i").click(function(){
+        $(".site-nav-menu").toggleClass("mobile-menu");
+    });
+ });
+
+ getPagination('#myTable');
+ //getPagination('.table-class');
+ //getPagination('table');
+
+/*					PAGINATION 
+- on change max rows select options fade out all rows gt option value mx = 5
+- append pagination list as per numbers of rows / max rows option (20row/5= 4pages )
+- each pagination li on click -> fade out all tr gt max rows * li num and (5*pagenum 2 = 10 rows)
+- fade out all tr lt max rows * li num - max rows ((5*pagenum 2 = 10) - 5)
+- fade in all tr between (maxRows*PageNum) and (maxRows*pageNum)- MaxRows 
+*/
+
+
+function getPagination(table) {
+var lastPage = 1;
+
+$('#maxRows')
+.on('change', function(evt) {
+//$('.paginationprev').html('');						// reset pagination
+
+lastPage = 1;
+$('.pagination')
+.find('li')
+.slice(1, -1)
+.remove();
+var trnum = 0; // reset tr counter
+var maxRows = parseInt($(this).val()); // get Max Rows from select option
+
+if (maxRows == 5000) {
+$('.pagination').hide();
+} else {
+$('.pagination').show();
+}
+
+var totalRows = $(table + ' tbody tr').length; // numbers of rows
+$(table + ' tr:gt(0)').each(function() {
+// each TR in  table and not the header
+trnum++; // Start Counter
+if (trnum > maxRows) {
+// if tr number gt maxRows
+
+$(this).hide(); // fade it out
+}
+if (trnum <= maxRows) {
+$(this).show();
+} // else fade in Important in case if it ..
+}); //  was fade out to fade it in
+if (totalRows > maxRows) {
+// if tr total rows gt max rows option
+var pagenum = Math.ceil(totalRows / maxRows); // ceil total(rows/maxrows) to get ..
+//	numbers of pages
+for (var i = 1; i <= pagenum; ) {
+// for each page append pagination li
+$('.pagination #prev')
+.before(
+'<li data-page="' +
+i +
+'">\
+               <span>' +
+i++ +
+'<span class="sr-only"></span></span>\
+             </li>'
+)
+.show();
+} // end for i
+} // end if row count > max rows
+$('.pagination [data-page="1"]').addClass('active'); // add active class to the first li
+$('.pagination li').on('click', function(evt) {
+// on click each page
+evt.stopImmediatePropagation();
+evt.preventDefault();
+var pageNum = $(this).attr('data-page'); // get it's number
+
+var maxRows = parseInt($('#maxRows').val()); // get Max Rows from select option
+
+if (pageNum == 'prev') {
+if (lastPage == 1) {
+return;
+}
+pageNum = --lastPage;
+}
+if (pageNum == 'next') {
+if (lastPage == $('.pagination li').length - 2) {
+return;
+}
+pageNum = ++lastPage;
+}
+
+lastPage = pageNum;
+var trIndex = 0; // reset tr counter
+$('.pagination li').removeClass('active'); // remove active class from all li
+$('.pagination [data-page="' + lastPage + '"]').addClass('active'); // add active class to the clicked
+// $(this).addClass('active');					// add active class to the clicked
+limitPagging();
+$(table + ' tr:gt(0)').each(function() {
+// each tr in table not the header
+trIndex++; // tr index counter
+// if tr index gt maxRows*pageNum or lt maxRows*pageNum-maxRows fade if out
+if (
+trIndex > maxRows * pageNum ||
+trIndex <= maxRows * pageNum - maxRows
+) {
+$(this).hide();
+} else {
+$(this).show();
+} //else fade in
+}); // end of for each tr in table
+}); // end of on click pagination list
+limitPagging();
+})
+.val(5)
+.change();
+
+// end of on select change
+
+// END OF PAGINATION
+}
+
+function limitPagging(){
+// alert($('.pagination li').length)
+
+if($('.pagination li').length > 7 ){
+if( $('.pagination li.active').attr('data-page') <= 3 ){
+$('.pagination li:gt(5)').hide();
+$('.pagination li:lt(5)').show();
+$('.pagination [data-page="next"]').show();
+}if ($('.pagination li.active').attr('data-page') > 3){
+$('.pagination li:gt(0)').hide();
+$('.pagination [data-page="next"]').show();
+for( let i = ( parseInt($('.pagination li.active').attr('data-page'))  -2 )  ; i <= ( parseInt($('.pagination li.active').attr('data-page'))  + 2 ) ; i++ ){
+$('.pagination [data-page="'+i+'"]').show();
+
+}
+
+}
+}
+}
+
+$(function() {
+// Just to append id number for each row
+$('table tr:eq(0)').prepend('<th> ID </th>');
+
+var id = 0;
+
+$('table tr:gt(0)').each(function() {
+id++;
+$(this).prepend('<td>' + id + '</td>');
+});
+});
+//---------------------------------------search----------------------------
+function performSearch() {
+
+// Declare search string 
+var filter = searchBox.value.toUpperCase();
+
+// Loop through first tbody's rows
+for (var rowI = 0; rowI < trs.length; rowI++) {
+
+// define the row's cells
+var tds = trs[rowI].getElementsByTagName("td");
+
+// hide the row
+trs[rowI].style.display = "none";
+
+// loop through row cells
+for (var cellI = 0; cellI < tds.length; cellI++) {
+
+// if there's a match
+if (tds[cellI].innerHTML.toUpperCase().indexOf(filter) > -1) {
+
+// show the row
+trs[rowI].style.display = "";
+
+// skip to the next row
+continue;
+
+}
+}
+}
+
+}
+
+// declare elements
+const searchBox = document.getElementById('searchBox');
+const table = document.getElementById("myTable");
+const trs = table.tBodies[0].getElementsByTagName("tr");
+
+// add event listener to search box
+searchBox.addEventListener('keyup', performSearch);
+//________________________________________________________________________________
+const btn = document.getElementById('elem');
+
+btn.addEventListener('click', () => window.scrollTo({
+top:0,
+behavior: 'smooth'
+}));
+//----------------------------------------------------------------------------------
+if ( window.history.replaceState ) {
+window.history.replaceState( null, null, window.location.href );
+} 
+//-------------------time--------------------------------------------------------
+var datetime = new Date();
+console.log(datetime);
+document.getElementById("time").textContent = datetime;
+function refreshTime() {
+const timeDisplay = document.getElementById("time");
+const dateString = new Date().toLocaleString();
+const formattedString = dateString.replace(", ", " - ");
+timeDisplay.textContent = formattedString;
+}
+setInterval(refreshTime, 1000);
+
+//-----------------------
+console.log(value)
+alert(value);
+
+
+//------------
+function exportTableToExcel(tableID, filename = ''){
+var downloadLink;
+var dataType = 'application/vnd.ms-excel';
+var tableSelect = document.getElementById(tableID);
+var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+
+// Specify file name
+filename = filename?filename+'.xls':'excel_data.xls';
+
+// Create download link element
+downloadLink = document.createElement("a");
+
+document.body.appendChild(downloadLink);
+
+if(navigator.msSaveOrOpenBlob){
+    var blob = new Blob(['\ufeff', tableHTML], {
+        type: dataType
+    });
+    navigator.msSaveOrOpenBlob( blob, filename);
+}else{
+    // Create a link to the file
+    downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+
+    // Setting the file name
+    downloadLink.download = filename;
+    
+    //triggering the function
+    downloadLink.click();
+}
+}
+function AutoRefresh( t ) {
+    setTimeout("location.reload(true);", t);
+}
+///------------------------------------------------------------------
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+  }
+  
+  // Close the dropdown if the user clicks outside of it
+  window.onclick = function(e) {
+    if (!e.target.matches('.dropbtn')) {
+    var myDropdown = document.getElementById("myDropdown");
+      if (myDropdown.classList.contains('show')) {
+        myDropdown.classList.remove('show');
+      }
+    }
+  }
+</script>
+</body>
